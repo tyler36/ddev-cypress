@@ -3,7 +3,7 @@ setup() {
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export TESTDIR=~/tmp/testelasticsearch
   mkdir -p $TESTDIR
-  export PROJNAME=test-addon-template
+  export PROJNAME=testcypress
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
@@ -32,8 +32,8 @@ teardown() {
 @test "install from release" {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  echo "# ddev get drud/ddev-addon-template with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get drud/ddev-addon-template
+  echo "# ddev get drud/ddev-cypress with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+  ddev get drud/ddev-cypress
   ddev restart
   # ddev exec "curl -s elasticsearch:9200" | grep "${PROJNAME}-elasticsearch"
 }
