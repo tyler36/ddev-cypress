@@ -38,7 +38,14 @@ NOTE: This uses [cypress/include](https://hub.docker.com/r/cypress/included) whi
   ddev restart
   ```
 
-- Add cypress configuration, `./cypress.json`,  if required. Note: DDEV automatically sets the "BaseURL" via the image.
+- Add a `./cypress.json` cypress configuration. Note: DDEV automatically sets the "BaseURL" via the image environmental variables. The `baseURL` setting below will be ignored.
+
+```json
+{
+    "baseURL": "https://ddev-cypress-demo.ddev.site",
+    "integrationFolder": "./tests/E2E",
+}
+```
 
 - Run cypress via `cypress run` (headless) or `cypress open`.
 
