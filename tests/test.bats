@@ -1,6 +1,7 @@
 setup() {
   set -eu -o pipefail
 
+  # Load bats support files; assumes they have been installed via BREW
   TEST_BREW_PREFIX="$(brew --prefix)"
   load "${TEST_BREW_PREFIX}/lib/bats-support/load.bash"
   load "${TEST_BREW_PREFIX}/lib/bats-assert/load.bash"
@@ -31,13 +32,15 @@ teardown() {
   ddev get ${DIR}
 
   # ASSERT: required files exist
-  assert_exists ${TESTDIR}/.ddev/docker-compose.cypress.yaml
-  assert_exists ${TESTDIR}/.ddev/commands/cypress/cypress-open
-  assert_exists ${TESTDIR}/.ddev/commands/cypress/cypress-run
+  assert_exist "${TESTDIR}/.ddev/docker-compose.cypress.yaml"
+  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-open"
+  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-run"
 
   # ASSERT: command works
   ddev restart
-  ddev cypress-open --version | "Cypress package version"
+  run ddev cypress-run --version
+  assert_output --partial "Cypress package version"
+  run ddev cypress-open --version
   assert_output --partial "Cypress package version"
 }
 
@@ -48,12 +51,14 @@ teardown() {
   ddev get tyler36/ddev-cypress
 
   # ASSERT: required files exist
-  assert_exists ${TESTDIR}/.ddev/docker-compose.cypress.yaml
-  assert_exists ${TESTDIR}/.ddev/commands/cypress/cypress-open
-  assert_exists ${TESTDIR}/.ddev/commands/cypress/cypress-run
+  assert_exist "${TESTDIR}/.ddev/docker-compose.cypress.yaml"
+  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-open"
+  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-run"
 
   # ASSERT: command works
   ddev restart
-  ddev cypress-open --version | "Cypress package version"
+  run ddev cypress-run --version
+  assert_output --partial "Cypress package version"
+  run ddev cypress-open --version
   assert_output --partial "Cypress package version"
 }
