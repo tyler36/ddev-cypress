@@ -1,4 +1,4 @@
-name: addon-template
+name: ddev-cypress
 
 # pre_install_actions - list of actions to run before installing the addon.
 # Examples would be removing an extraneous docker volume,
