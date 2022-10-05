@@ -30,7 +30,7 @@ jobs:
     strategy:
       matrix:
         ddev_version: [stable, HEAD]
-#        ddev_version: [PR]
+#        ddev_version: [stable, edge, HEAD, PR]
       fail-fast: false
 
     runs-on: ubuntu-20.04
@@ -40,10 +40,9 @@ jobs:
     - run: echo "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
     - name: Environment setup
       run: |
-        brew install bats-core mkcert
         brew tap bats-core/bats-core
         brew install bats-support bats-assert bats-file
-        mkcert -install
+        sudo apt-get update >/dev/null && sudo apt-get install -y expect >/dev/null
 
     - name: Use ddev stable
       if: matrix.ddev_version == 'stable'
