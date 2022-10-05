@@ -86,7 +86,7 @@ Ethernet adapter Ethernet:
 
 ### A note about the Cypress image
 
-This recipe uses the latest `cypress/include` image (`cypress/include:10.2.0`) which includes the following browsers:
+This recipe uses the latest `cypress/include` image which includes the following browsers:
 
 - Chrome
 - Firefox
