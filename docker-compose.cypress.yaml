@@ -1,5 +1,4 @@
 #ddev-generated
-version: '3.6'
 services:
   cypress:
     image: cypress/included:10.9.0
