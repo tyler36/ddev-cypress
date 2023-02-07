@@ -25,9 +25,10 @@ This recipe integrates a Cypress docker image with your DDEV project.
 ## Requirements
 
 - DDEV >= 1.19
-- Windows or Linux
-
-NOTE: This uses [cypress/include](https://hub.docker.com/r/cypress/included) which does not have arm64 images and therefore does **not** support M1 Macs.
+- Modern OS
+  - macOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
+  - Linux Ubuntu 12.04 and above, Fedora 21 and Debian 8 (x86_64 or Arm 64-bit (x64 or arm64))
+  - Windows 7 and above (64-bit only)
 
 ## Steps
 
@@ -155,7 +156,6 @@ Cypress expects a directory strutures containing the tests, plugins and support 
 
 ## TODO
 
-- [ ] Add arm64 / mac solution
 - [ ] Add steps for intergrating into Github Actions
 
 **Contributed by [@tyler36](https://github.com/tyler36)**
