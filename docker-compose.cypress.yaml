@@ -1,7 +1,7 @@
 #ddev-generated
 services:
   cypress:
-    image: cypress/included:10.9.0
+    image: cypress/included:12.3.0
     container_name: ddev-${DDEV_SITENAME}-cypress
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
