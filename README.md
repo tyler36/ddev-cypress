@@ -29,6 +29,7 @@ This recipe integrates a Cypress docker image with your DDEV project.
   - macOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
   - Linux Ubuntu 12.04 and above, Fedora 21 and Debian 8 (x86_64 or Arm 64-bit (x64 or arm64))
   - Windows 7 and above (64-bit only)
+- Interactive mode requires a X11 server running on the host machine.
 
 ## Steps
 
@@ -97,6 +98,14 @@ It is considered best practice to use a [specific image tag](https://github.com/
 Cypress can run into 2 different modes: interactive and runner.
 This recipe includes 2 alias commands to help you use Cypress.
 
+To see Cypress in interactive mode, Cypress forward XVFB messages out of the Cypress container into an X11 server running on the host machine. There are many options depending on your OS. User have reported success with the following:
+
+- Windows 10 / WSL users:
+  - [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](ms-windows-store://pdp/?productid=9NL6KD1H33V3))
+  - [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (via [chocolatey](https://community.chocolatey.org/packages/vcxsrv#versionhistory)).
+- Mac users:
+  - [XQuartz](https://www.xquartz.org/). See [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/).
+
 ### `cypress-open`
 
 To open cypress in "interactive" mode, run the following command:
@@ -146,7 +155,6 @@ Cypress expects a directory strutures containing the tests, plugins and support 
 ### "Unable to open X display."
 
 - This recipe forwards the Cypress GUI via an X11 / X410 server. Please ensure you have this working on your host system.
-- For Windows 10 users, try [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](ms-windows-store://pdp/?productid=9NL6KD1H33V3)), or [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (via [chocolatey](https://community.chocolatey.org/packages/vcxsrv#versionhistory))
 
 ## TODO
 
