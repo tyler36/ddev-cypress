@@ -39,16 +39,10 @@ This recipe integrates a Cypress docker image with your DDEV project.
   ddev restart
   ```
 
-- Add a `./cypress.json` cypress configuration. Note: DDEV automatically sets the "BaseURL" via the image environmental variables. The `baseURL` setting below will be ignored.
+- Run cypress via `ddev cypress-open` or `ddev cypress-run` (headless).
 
-```json
-{
-    "baseURL": "https://ddev-cypress-demo.ddev.site",
-    "integrationFolder": "./tests/E2E",
-}
-```
-
-- Run cypress via `cypress run` (headless) or `cypress open`.
+It is recommended to run `ddev cypress-open` first to create configuration and support files.
+This addon sets `CYPRESS_baseUrl` to DDEV's primary URL in the `docker-compose.cypress.yaml`.
 
 ### Configure `DISPLAY`
 
