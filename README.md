@@ -114,7 +114,7 @@ To open cypress in "interactive" mode, run the following command:
 ddev cypress-open
 ```
 
-This command also accepts arguments. Refer to the ["#cyress open" documentation](https://docs.cypress.io/guides/guides/command-line#cypress-open) for further details.
+This command also accepts arguments. Refer to the ["#cypress open" documentation](https://docs.cypress.io/guides/guides/command-line#cypress-open) for further details.
 
 Example: To open Cypress in interactive mode, and specify a config file
 
@@ -147,7 +147,7 @@ ddev cypress-run --browser chrome
 
 ### "Could not find a Cypress configuration file, exiting"
 
-Cypress expects a directory strutures containing the tests, plugins and support files.
+Cypress expects a directory structures containing the tests, plugins and support files.
 
 - If the `./cypress` directory does not exist, it will scaffold out these directories, including a default `cypress.json` setting file and example tests when you first run `ddev cypress-open`.
 - Make sure you have a `cypress.json` file in your project root, or use `--config [file]` argument to specify one.
@@ -158,6 +158,6 @@ Cypress expects a directory strutures containing the tests, plugins and support 
 
 ## TODO
 
-- [ ] Add steps for intergrating into Github Actions
+- [ ] Add steps for integrating into Github Actions
 
 **Contributed by [@tyler36](https://github.com/tyler36)**
