@@ -25,9 +25,11 @@ This recipe integrates a Cypress docker image with your DDEV project.
 ## Requirements
 
 - DDEV >= 1.19
-- Windows or Linux
-
-NOTE: This uses [cypress/include](https://hub.docker.com/r/cypress/included) which does not have arm64 images and therefore does **not** support M1 Macs.
+- Modern OS
+  - macOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
+  - Linux Ubuntu 12.04 and above, Fedora 21 and Debian 8 (x86_64 or Arm 64-bit (x64 or arm64))
+  - Windows 7 and above (64-bit only)
+- Interactive mode requires a X11 server running on the host machine.
 
 ## Steps
 
@@ -38,16 +40,10 @@ NOTE: This uses [cypress/include](https://hub.docker.com/r/cypress/included) whi
   ddev restart
   ```
 
-- Add a `./cypress.json` cypress configuration. Note: DDEV automatically sets the "BaseURL" via the image environmental variables. The `baseURL` setting below will be ignored.
+- Run cypress via `ddev cypress-open` or `ddev cypress-run` (headless).
 
-```json
-{
-    "baseURL": "https://ddev-cypress-demo.ddev.site",
-    "integrationFolder": "./tests/E2E",
-}
-```
-
-- Run cypress via `cypress run` (headless) or `cypress open`.
+It is recommended to run `ddev cypress-open` first to create configuration and support files.
+This addon sets `CYPRESS_baseUrl` to DDEV's primary URL in the `docker-compose.cypress.yaml`.
 
 ### Configure `DISPLAY`
 
@@ -102,6 +98,14 @@ It is considered best practice to use a [specific image tag](https://github.com/
 Cypress can run into 2 different modes: interactive and runner.
 This recipe includes 2 alias commands to help you use Cypress.
 
+To see Cypress in interactive mode, Cypress forward XVFB messages out of the Cypress container into an X11 server running on the host machine. There are many options depending on your OS. User have reported success with the following:
+
+- Windows 10 / WSL users:
+  - [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](ms-windows-store://pdp/?productid=9NL6KD1H33V3))
+  - [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (via [chocolatey](https://community.chocolatey.org/packages/vcxsrv#versionhistory)).
+- Mac users:
+  - [XQuartz](https://www.xquartz.org/). See [Running GUI applications using Docker for Mac](https://sourabhbajaj.com/blog/2017/02/07/gui-applications-docker-mac/).
+
 ### `cypress-open`
 
 To open cypress in "interactive" mode, run the following command:
@@ -110,7 +114,7 @@ To open cypress in "interactive" mode, run the following command:
 ddev cypress-open
 ```
 
-This command also accepts arguments. Refer to the ["#cyress open" documentation](https://docs.cypress.io/guides/guides/command-line#cypress-open) for further details.
+This command also accepts arguments. Refer to the ["#cypress open" documentation](https://docs.cypress.io/guides/guides/command-line#cypress-open) for further details.
 
 Example: To open Cypress in interactive mode, and specify a config file
 
@@ -143,7 +147,7 @@ ddev cypress-run --browser chrome
 
 ### "Could not find a Cypress configuration file, exiting"
 
-Cypress expects a directory strutures containing the tests, plugins and support files.
+Cypress expects a directory structures containing the tests, plugins and support files.
 
 - If the `./cypress` directory does not exist, it will scaffold out these directories, including a default `cypress.json` setting file and example tests when you first run `ddev cypress-open`.
 - Make sure you have a `cypress.json` file in your project root, or use `--config [file]` argument to specify one.
@@ -151,11 +155,9 @@ Cypress expects a directory strutures containing the tests, plugins and support 
 ### "Unable to open X display."
 
 - This recipe forwards the Cypress GUI via an X11 / X410 server. Please ensure you have this working on your host system.
-- For Windows 10 users, try [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](ms-windows-store://pdp/?productid=9NL6KD1H33V3)), or [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (via [chocolatey](https://community.chocolatey.org/packages/vcxsrv#versionhistory))
 
 ## TODO
 
-- [ ] Add arm64 / mac solution
-- [ ] Add steps for intergrating into Github Actions
+- [ ] Add steps for integrating into Github Actions
 
 **Contributed by [@tyler36](https://github.com/tyler36)**
