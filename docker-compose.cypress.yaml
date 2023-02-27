@@ -6,7 +6,6 @@ services:
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: ${DDEV_APPROOT}
-    user: "${DDEV_UID}:${DDEV_GID}"
     networks: [default, ddev_default]
 
     tty: true
