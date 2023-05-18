@@ -14,11 +14,10 @@
 - [Troubleshooting](#troubleshooting)
   - ["Could not find a Cypress configuration file, exiting"](#could-not-find-a-cypress-configuration-file-exiting)
   - ["Unable to open X display."](#unable-to-open-x-display)
-- [TODO](#todo)
 
 ## Introduction
 
-[Cypress](https://www.cypress.io/) is a "complete end-to-end testing experience". It allows you to write Javascript test files that automate real browsers.  For more details, see the [Cypress Overview](https://docs.cypress.io/guides/overview/why-cypress) page.
+[Cypress](https://www.cypress.io/) is a "complete end-to-end testing experience". It allows you to write JavaScript test files that automate real browsers. For more details, see the [Cypress Overview](https://docs.cypress.io/guides/overview/why-cypress) page.
 
 This recipe integrates a Cypress docker image with your DDEV project.
 
@@ -26,9 +25,9 @@ This recipe integrates a Cypress docker image with your DDEV project.
 
 - DDEV >= 1.19
 - Modern OS
-  - macOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
+  - MacOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
   - Linux Ubuntu 12.04 and above, Fedora 21 and Debian 8 (x86_64 or Arm 64-bit (x64 or arm64))
-  - Windows 7 and above (64-bit only)
+  - Windows 7 and above (64-bit)
 - Interactive mode requires a X11 server running on the host machine.
 
 ## Steps
@@ -42,12 +41,12 @@ This recipe integrates a Cypress docker image with your DDEV project.
 
 - Run cypress via `ddev cypress-open` or `ddev cypress-run` (headless).
 
-It is recommended to run `ddev cypress-open` first to create configuration and support files.
+We recommend running `ddev cypress-open` first to create configuration and support files.
 This addon sets `CYPRESS_baseUrl` to DDEV's primary URL in the `docker-compose.cypress.yaml`.
 
 ### Configure `DISPLAY`
 
-To correctly display the Cypress screen and browser output, you must configure a `DISPLAY` environment variable.
+To display the Cypress screen and browser output, you must configure a `DISPLAY` environment variable.
 
 #### Windows 10
 
@@ -73,7 +72,7 @@ Ethernet adapter Ethernet:
    Default Gateway . . . . . . . . . : 192.168.0.1
 ```
 
-- In your project `./docker-compose.cypress.yaml`, add the IPv4 address and `:0` (EG. `192.168.0.196:0` ) to the display section under environment.
+- In your project `./docker-compose.cypress.yaml`, add the IPv4 address and `:0` (For example `192.168.0.196:0` ) to the display section under environment.
 
 ```yaml
     environment:
@@ -88,17 +87,17 @@ This recipe uses the latest `cypress/include` image which includes the following
 - Firefox
 - Electron
 
-It is considered best practice to use a [specific image tag](https://github.com/cypress-io/cypress-docker-images#best-practice).
+Best practice encourages using a [specific image tag](https://github.com/cypress-io/cypress-docker-images#best-practice).
 
 - If you require a specific browser, update `image` in your `./.ddev/docker-compose.cypress.yaml`.
-- Available images and versions can be found on the [cypress-docker-images](https://github.com/cypress-io/cypress-docker-images) page.
+- Available images and versions are available on the [cypress-docker-images](https://github.com/cypress-io/cypress-docker-images) page.
 
 ## Commands
 
 Cypress can run into 2 different modes: interactive and runner.
 This recipe includes 2 alias commands to help you use Cypress.
 
-To see Cypress in interactive mode, Cypress forward XVFB messages out of the Cypress container into an X11 server running on the host machine. There are many options depending on your OS. User have reported success with the following:
+To see Cypress in interactive mode, Cypress forward XVFB messages out of the Cypress container into an X11 server running on the host machine. Each OS has different options. Developers have reported success with the following:
 
 - Windows 10 / WSL users:
   - [GWSL](https://opticos.github.io/gwsl/tutorials/manual.html) (via [Microsoft store](ms-windows-store://pdp/?productid=9NL6KD1H33V3))
@@ -114,7 +113,7 @@ To open cypress in "interactive" mode, run the following command:
 ddev cypress-open
 ```
 
-This command also accepts arguments. Refer to the ["#cypress open" documentation](https://docs.cypress.io/guides/guides/command-line#cypress-open) for further details.
+See ["#cypress open" documentation](https://docs.cypress.io/guides/guides/command-line#cypress-open) for a full list of available arguments.
 
 Example: To open Cypress in interactive mode, and specify a config file
 
@@ -130,7 +129,7 @@ To run Cypress in "runner" mode, run the following command:
 ddev cypress-run
 ```
 
-This command also accepts arguments. Refer to [#cypress run](https://docs.cypress.io/guides/guides/command-line#cypress-run) page for a full list of available arguments.
+See [#cypress run](https://docs.cypress.io/guides/guides/command-line#cypress-run) for a full list of available arguments.
 
 Example: To run all Cypress tests, using Chrome in headless mode
 
@@ -141,7 +140,7 @@ ddev cypress-run --browser chrome
 ## Notes
 
 - The dockerized Cypress *should* find any locally installed plugins in your project's `node_modules`; assuming they are install via npm or yarn.
-- Some plugins may require additional settings, such as environmental variables. These can be passed through via command arguments.
+- Some plugins may require specific settings, such as environmental variables. Pass them through via command arguments.
 
 ## Troubleshooting
 
@@ -155,9 +154,5 @@ Cypress expects a directory structures containing the tests, plugins and support
 ### "Unable to open X display."
 
 - This recipe forwards the Cypress GUI via an X11 / X410 server. Please ensure you have this working on your host system.
-
-## TODO
-
-- [ ] Add steps for integrating into Github Actions
 
 **Contributed by [@tyler36](https://github.com/tyler36)**
