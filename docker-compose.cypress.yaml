@@ -14,7 +14,6 @@ services:
     environment:
       - CYPRESS_baseUrl=${DDEV_PRIMARY_URL}
       - DISPLAY
-      - HOME=/root
 
     volumes:
       # Mount the project root to Cypress's project point
