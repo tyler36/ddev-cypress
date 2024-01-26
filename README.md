@@ -1,7 +1,6 @@
 # DDEV-cypress <!-- omit in toc -->
 
-[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml)
-
+[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Steps](#steps)
