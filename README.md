@@ -1,5 +1,7 @@
 # DDEV-cypress <!-- omit in toc -->
 
+[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml)
+
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Steps](#steps)
