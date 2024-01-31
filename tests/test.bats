@@ -7,7 +7,7 @@ setup() {
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
-  mkdir "public"
+  mkdir -p "public"
   cp -r "${DIR}/tests/testdata/"* "${TESTDIR}"
   ddev config --project-name=${PROJNAME} --docroot=public
   ddev start -y >/dev/null
