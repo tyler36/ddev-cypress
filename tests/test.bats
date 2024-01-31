@@ -1,27 +1,27 @@
 setup() {
   set -eu -o pipefail
-
-  # Load bats support files; assumes they have been installed via BREW
-  TEST_BREW_PREFIX="$(brew --prefix)"
-  load "${TEST_BREW_PREFIX}/lib/bats-support/load.bash"
-  load "${TEST_BREW_PREFIX}/lib/bats-assert/load.bash"
-  load "${TEST_BREW_PREFIX}/lib/bats-file/load.bash"
-
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export TESTDIR=~/tmp/ddev-cypress
   mkdir -p $TESTDIR
   export PROJNAME=ddev-cypress
   export DDEV_NON_INTERACTIVE=true
-  ddev delete -Oy ${PROJNAME} || true
+  ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
-  ddev config --project-name=${PROJNAME}
-  ddev start
+  mkdir "public"
+  cp -r "${DIR}/tests/testdata/"* "${TESTDIR}"
+  ddev config --project-name=${PROJNAME} --docroot=public
+  ddev start -y >/dev/null
+}
+
+health_checks() {
+  # ddev cypress-run --version | grep "Cypress package version"
+  ddev cypress-run | grep "All specs passed"
 }
 
 teardown() {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  ddev delete -Oy ${PROJNAME}
+  ddev delete -Oy ${PROJNAME} >/dev/null 2>&1
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
@@ -30,18 +30,8 @@ teardown() {
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
-
-  # ASSERT: required files exist
-  assert_exist "${TESTDIR}/.ddev/docker-compose.cypress.yaml"
-  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-open"
-  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-run"
-
-  # ASSERT: command works
   ddev restart
-  run ddev cypress-run --version
-  assert_output --partial "Cypress package version"
-  run ddev cypress-open --version
-  assert_output --partial "Cypress package version"
+  health_checks
 }
 
 @test "install from release" {
@@ -49,16 +39,6 @@ teardown() {
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get tyler36/ddev-cypress with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get tyler36/ddev-cypress
-
-  # ASSERT: required files exist
-  assert_exist "${TESTDIR}/.ddev/docker-compose.cypress.yaml"
-  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-open"
-  assert_exist "${TESTDIR}/.ddev/commands/cypress/cypress-run"
-
-  # ASSERT: command works
-  ddev restart
-  run ddev cypress-run --version
-  assert_output --partial "Cypress package version"
-  run ddev cypress-open --version
-  assert_output --partial "Cypress package version"
+  ddev restart >/dev/null
+  health_checks
 }
