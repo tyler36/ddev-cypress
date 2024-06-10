@@ -11,6 +11,9 @@ setup() {
   cp -r "${DIR}/tests/testdata/"* "${TESTDIR}"
   ddev config --project-name=${PROJNAME} --docroot=public
   ddev start -y >/dev/null
+
+  # Disable DRI3 extension
+  export LIBGL_DRI3_DISABLE=1
 }
 
 health_checks() {
