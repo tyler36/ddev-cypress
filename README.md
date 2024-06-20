@@ -5,7 +5,7 @@
 - [Requirements](#requirements)
 - [Steps](#steps)
   - [Configure `DISPLAY`](#configure-display)
-    - [Mac OS](#mac-os)
+    - [macOS](#macos)
     - [Windows 10](#windows-10)
       - [Running DDEV on Win10 (not WSL)](#running-ddev-on-win10-not-wsl)
   - [A note about the Cypress image](#a-note-about-the-cypress-image)
@@ -50,7 +50,7 @@ This addon sets `CYPRESS_baseUrl` to DDEV's primary URL in the `docker-compose.c
 
 To display the Cypress screen and browser output, you must configure a `DISPLAY` environment variable.
 
-#### Mac OS
+#### macOS
 
 ddev Cypress Setup (Mac)
 
@@ -61,14 +61,19 @@ brew install xquartz --cask
 # Run XQuartz
 open -a Xquartz
 ```
-checkbox checkedIn the XQuartz preferences, go to the “Security” tab and make sure you’ve got the “Allow connections from network clients” ticked:
+In the XQuartz preferences, go to the “Security” tab and make sure the “Allow connections from network clients” checkbox is checked
 ```bash
 # Run the below command
 xhost + 127.0.0.1
 ```
-Open `docker-compose.cypress.yaml` and in the *environment* section add 
+Add a file called `docker-compose.cypress_extra.yaml` with the following content: 
 
-`- DISPLAY=host.docker.internal:0`
+```yaml
+services:
+  cypress:
+    environment:
+      - DISPLAY=host.docker.internal:0
+```
 
 #### Windows 10
 
