@@ -57,10 +57,15 @@ ddev Cypress Setup (Mac)
 ```bash
 # Install XQuartz
 brew install xquartz --cask
+```
 
+Now __restart your Mac__.  XQuartz will not properly be set to listen for X11 connections until you do this.
+
+```bash
 # Run XQuartz
 open -a Xquartz
 ```
+
 In the XQuartz preferences, go to the “Security” tab and make sure the “Allow connections from network clients” checkbox is checked
 ```bash
 # Run the below command
