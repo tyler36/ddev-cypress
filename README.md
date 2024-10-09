@@ -22,6 +22,14 @@
 
 This recipe integrates a Cypress docker image with your DDEV project.
 
+The main benefit is integration of Chrome and Firefox browsers out of the box, providing a known static state regardless of local OS or cloud CI/CS development. It also provides X11 display support for MacOS and Windows users, whereas this usually just works in Linux.
+
+Installing via NPM/Yarn works well, but it assumes you:
+- Have already installed <a href="https://nodejs.org">Node.js</a>
+- Assumes you have correctly installed browsers (i.e. Firefox or Chromium) available
+
+<a href="https://www.drupal.org/docs/develop/automated-testing/browser-testing-using-cypress">Browser testing using Cypress</a> sets up Cypress for Drupal manually. For Linux users this could be easier, since X11 and Firefox are usually already present.
+
 ## Requirements
 
 - DDEV >= 1.19
