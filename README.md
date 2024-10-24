@@ -35,8 +35,21 @@ This recipe integrates a Cypress docker image with your DDEV project.
 
 - Install service
 
+  For DDEV v1.23.5 or above run
+
+  ```shell
+  ddev add-on get tyler36/ddev-cypress
+  ```
+
+  For earlier versions of DDEV run
+
   ```shell
   ddev get tyler36/ddev-cypress
+  ```
+
+  Then restart the project
+
+  ```shell
   ddev restart
   ```
 
