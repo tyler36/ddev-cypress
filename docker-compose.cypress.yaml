@@ -2,6 +2,9 @@
 services:
   cypress:
     image: cypress/included:13.11.0
+    build:
+      context: './cypressBuild'
+      dockerfile: Dockerfile
     container_name: ddev-${DDEV_SITENAME}-cypress
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
