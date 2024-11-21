@@ -54,7 +54,7 @@ To display the Cypress screen and browser output, you must configure a `DISPLAY`
 You may need to set up access control for the X server for this to work. Install the xhost package (one is available for all distros) and run:
 
 ```sh
-export DISPLAY=:0.0
+export DISPLAY=:0
 xhost +local:docker
 ```
 
