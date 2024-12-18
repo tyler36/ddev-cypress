@@ -74,6 +74,15 @@ This addon sets `CYPRESS_baseUrl` to DDEV's primary URL in the `docker-compose.c
 
 To display the Cypress screen and browser output, you must configure a `DISPLAY` environment variable.
 
+#### Linux
+
+You may need to set up access control for the X server for this to work. Install the xhost package (one is available for all distros) and run:
+
+```sh
+export DISPLAY=:0
+xhost +
+```
+
 #### Windows 10
 
 If you are running DDEV on Win10 or WSL2, you need to configure a display server on Win10.
