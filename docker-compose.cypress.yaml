@@ -24,9 +24,5 @@ services:
       # Allow X11 forwarding
       - /tmp/.X11-unix:/tmp/.X11-unix
 
-    external_links:
-      # Resolve links via DDEV router
-      - "ddev-router:${DDEV_HOSTNAME}"
-
     entrypoint: /bin/bash
     working_dir: /e2e
