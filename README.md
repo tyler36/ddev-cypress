@@ -65,6 +65,9 @@ Installing Cypress with favorite package manager works great locally. However, m
   ddev restart
   ```
 
+  > [!NOTE]
+  > If you change `additional_hostnames` or `additional_fqdns`, you have to re-run `ddev add-on get tyler36/ddev-cypress`
+
 - Run cypress via `ddev cypress-open` or `ddev cypress-run` (headless).
 
 We recommend running `ddev cypress-open` first to create configuration and support files.
