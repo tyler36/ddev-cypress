@@ -1,10 +1,11 @@
 # DDEV-cypress <!-- omit in toc -->
 
-[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Steps](#steps)
   - [Configure `DISPLAY`](#configure-display)
+    - [Linux](#linux)
     - [Windows 10](#windows-10)
       - [Running DDEV on Win10 (not WSL)](#running-ddev-on-win10-not-wsl)
   - [A note about the Cypress image](#a-note-about-the-cypress-image)
