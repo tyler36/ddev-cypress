@@ -17,3 +17,35 @@ global_files:
 
 
 post_install_actions:
+  - |
+    #ddev-nodisplay
+    #ddev-description:Checking docker-compose.cypress_extras.yaml for changes
+    if [ -f docker-compose.cypress_extras.yaml ] && ! grep -q '#ddev-generated' docker-compose.cypress_extras.yaml; then
+      echo "Existing docker-compose.cypress_extras.yaml does not have #ddev-generated, so can't be updated"
+      exit 2
+    fi
+  - |
+    #ddev-nodisplay
+    #ddev-description:Adding all hostnames to the cypress container to make them available
+    cat <<-END >docker-compose.cypress_extras.yaml
+    #ddev-generated
+    services:
+      cypress:
+        external_links:
+        {{- $cypress_hostnames := splitList "," (env "DDEV_HOSTNAME") -}}
+        {{- range $i, $n := $cypress_hostnames }}
+          - "ddev-router:{{- replace (env "DDEV_TLD") "\\${DDEV_TLD}" (replace (env "DDEV_PROJECT") "\\${DDEV_PROJECT}" $n) -}}"
+        {{- end }}
+    END
+
+removal_actions:
+  - |
+    #ddev-nodisplay
+    #ddev-description:Remove docker-compose.cypress_extras.yaml file
+    if [ -f docker-compose.cypress_extras.yaml ]; then
+      if grep -q '#ddev-generated' docker-compose.cypress_extras.yaml; then
+        rm -f docker-compose.cypress_extras.yaml
+      else
+        echo "Unwilling to remove '$DDEV_APPROOT/.ddev/docker-compose.cypress_extras.yaml' because it does not have #ddev-generated in it; you can manually delete it if it is safe to delete."
+      fi
+    fi
