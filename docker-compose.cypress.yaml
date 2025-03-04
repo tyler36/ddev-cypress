@@ -1,7 +1,7 @@
 #ddev-generated
 services:
   cypress:
-    image: cypress/included:13.11.0
+    image: cypress/included:13.17.0
     container_name: ddev-${DDEV_SITENAME}-cypress
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
@@ -23,10 +23,6 @@ services:
       - ".:/mnt/ddev_config"
       # Allow X11 forwarding
       - /tmp/.X11-unix:/tmp/.X11-unix
-
-    external_links:
-      # Resolve links via DDEV router
-      - "ddev-router:${DDEV_HOSTNAME}"
 
     entrypoint: /bin/bash
     working_dir: /e2e

@@ -1,11 +1,12 @@
 # DDEV-cypress <!-- omit in toc -->
 
-[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+[![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Steps](#steps)
   - [Configure `DISPLAY`](#configure-display)
     - [macOS](#macos)
+    - [Linux](#linux)
     - [Windows 10](#windows-10)
       - [Running DDEV on Win10 (not WSL)](#running-ddev-on-win10-not-wsl)
   - [A note about the Cypress image](#a-note-about-the-cypress-image)
@@ -23,6 +24,18 @@
 
 This recipe integrates a Cypress docker image with your DDEV project.
 
+The main benefit is integration of Chrome and Firefox browsers out of the box, providing a known static state regardless of local OS or cloud CI/CS development. It also provides X11 display support for MacOS and Windows users, whereas this usually just works in Linux.
+
+This addon:
+- provides Cypress without the need to install <a href="https://nodejs.org">Node.js</a>
+- provides Firefox and Chromium out of the box, preconfigured for Cypress
+- configures your project's HTTPS site a base URL
+- provides helper commands for running Cypress GUI or in headless mode
+
+Installing Cypress with favorite package manager works great locally. However, maintaining a consistent node and browser environments across teams, operating systrems, CI/CS development pipelines and cloud development spaces can become a challenge.
+
+<a href="https://www.drupal.org/docs/develop/automated-testing/browser-testing-using-cypress">Browser testing using Cypress</a> sets up Cypress for Drupal manually. For Linux users this could be easier, since X11 and Firefox are usually already present.
+
 ## Requirements
 
 - DDEV >= 1.19
@@ -36,10 +49,26 @@ This recipe integrates a Cypress docker image with your DDEV project.
 
 - Install service
 
+  For DDEV v1.23.5 or above run
+
+  ```shell
+  ddev add-on get tyler36/ddev-cypress
+  ```
+
+  For earlier versions of DDEV run
+
   ```shell
   ddev get tyler36/ddev-cypress
+  ```
+
+  Then restart the project
+
+  ```shell
   ddev restart
   ```
+
+> [!NOTE]
+> If you change `additional_hostnames` or `additional_fqdns`, you have to re-run `ddev add-on get tyler36/ddev-cypress`
 
 - Run cypress via `ddev cypress-open` or `ddev cypress-run` (headless).
 
@@ -77,6 +106,14 @@ services:
   cypress:
     environment:
       - DISPLAY=host.docker.internal:0
+```
+#### Linux
+
+You may need to set up access control for the X server for this to work. Install the xhost package (one is available for all distros) and run:
+
+```sh
+export DISPLAY=:0
+xhost +
 ```
 
 #### Windows 10
