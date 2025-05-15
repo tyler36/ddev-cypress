@@ -49,16 +49,8 @@ Installing Cypress with favorite package manager works great locally. However, m
 
 - Install service
 
-  For DDEV v1.23.5 or above run
-
   ```shell
   ddev add-on get tyler36/ddev-cypress
-  ```
-
-  For earlier versions of DDEV run
-
-  ```shell
-  ddev get tyler36/ddev-cypress
   ```
 
   Then restart the project
@@ -99,7 +91,7 @@ Now __restart your Mac__.  XQuartz will not properly be set to listen for X11 co
 # Run the below command
 xhost + 127.0.0.1
 ```
-Add a file called `docker-compose.cypress_extra.yaml` with the following content to the .ddev directory: 
+Add a file called `docker-compose.cypress_extra.yaml` with the following content to the .ddev directory:
 
 ```yaml
 services:
