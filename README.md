@@ -1,9 +1,9 @@
-# DDEV-cypress <!-- omit in toc -->
-
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml)
 [![last commit](https://img.shields.io/github/last-commit/ddev/ddev-addon-template)](https://github.com/ddev/ddev-addon-template/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-addon-template)](https://github.com/ddev/ddev-addon-template/releases/latest)
+
+# DDEV-cypress <!-- omit in toc -->
 
 - [Introduction](#introduction)
 - [Requirements](#requirements)
@@ -31,6 +31,7 @@ This recipe integrates a Cypress docker image with your DDEV project.
 The main benefit is integration of Chrome and Firefox browsers out of the box, providing a known static state regardless of local OS or cloud CI/CS development. It also provides X11 display support for MacOS and Windows users, whereas this usually just works in Linux.
 
 This addon:
+
 - provides Cypress without the need to install <a href="https://nodejs.org">Node.js</a>
 - provides Firefox and Chromium out of the box, preconfigured for Cypress
 - configures your project's HTTPS site a base URL
@@ -95,6 +96,7 @@ Now __restart your Mac__.  XQuartz will not properly be set to listen for X11 co
 # Run the below command
 xhost + 127.0.0.1
 ```
+
 Add a file called `docker-compose.cypress_extra.yaml` with the following content to the .ddev directory:
 
 ```yaml
@@ -103,6 +105,7 @@ services:
     environment:
       - DISPLAY=host.docker.internal:0
 ```
+
 #### Linux
 
 You may need to set up access control for the X server for this to work. Install the xhost package (one is available for all distros) and run:
@@ -219,4 +222,4 @@ Cypress expects a directory structures containing the tests, plugins and support
 
 - This recipe forwards the Cypress GUI via an X11 / X410 server. Please ensure you have this working on your host system.
 
-**Contributed by [@tyler36](https://github.com/tyler36)**
+__Contributed by [@tyler36](https://github.com/tyler36)__
