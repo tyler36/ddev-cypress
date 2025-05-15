@@ -1,5 +1,6 @@
 # DDEV-cypress <!-- omit in toc -->
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 - [Introduction](#introduction)
 - [Requirements](#requirements)
