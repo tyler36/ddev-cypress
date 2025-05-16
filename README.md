@@ -1,7 +1,7 @@
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml/badge.svg)](https://github.com/tyler36/ddev-cypress/actions/workflows/tests.yml)
-[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-addon-template)](https://github.com/ddev/ddev-addon-template/commits)
-[![release](https://img.shields.io/github/v/release/ddev/ddev-addon-template)](https://github.com/ddev/ddev-addon-template/releases/latest)
+[![last commit](https://img.shields.io/github/last-commit/tyler36/ddev-cypress)](https://github.com/tyler36/ddev-cypress/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-cypress)](https://github.com/tyler36/ddev-cypress/releases/latest)
 
 # DDEV-cypress <!-- omit in toc -->
 
